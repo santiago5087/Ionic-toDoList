@@ -1,10 +1,32 @@
-<ion-header>
+<ion-header no-border>
   <ion-toolbar>
-    <ion-title>Add list</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button color="tertiary" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>List Name</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <h1>Add list</h1>
-  
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">New item</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Tasks to do</ion-label>
+    </ion-list-header>
+    
+    <ion-item>
+      <ion-checkbox slot="start" color="tertiary"></ion-checkbox>
+      <ion-label>Remember eat today</ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

@@ -15,4 +15,10 @@ export class ToDoService {
     this.myList.push(list1, list2);
     console.log(this.myList);
   }
+
+  createList(title: string) {
+    const newList = new List(title);
+    this.myList.push(newList);
+  }
+
 }
