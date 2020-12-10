@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToDoService } from 'src/app/services/to-do.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  constructor(private toDoService: ToDoService,
+              private router: Router) {}
 
+
+  addList() {
+    this.router.navigateByUrl('/tabs/tab1/aggregate');
+  }
 }
