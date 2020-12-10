@@ -9,16 +9,21 @@ export class ToDoService {
   myList: List[] = [];
 
   constructor() {
-    const list1 = new List('Gather the infinity stones');
-    const list2 = new List('Heroes to disappear');
-
-    this.myList.push(list1, list2);
-    console.log(this.myList);
+    this.chargeStorage();
   }
 
   createList(title: string) {
     const newList = new List(title);
     this.myList.push(newList);
+    this.saveStorage();
+  }
+
+  saveStorage() {
+    localStorage.setItem('data', JSON.stringify(this.myList));
+  }
+
+  chargeStorage() {
+    if(localStorage.getItem('data')) this.myList = JSON.parse(localStorage.getItem('data'));
   }
 
 }
