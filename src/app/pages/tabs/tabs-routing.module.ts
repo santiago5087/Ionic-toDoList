@@ -15,7 +15,7 @@ const routes: Routes = [
             loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
           },
           {
-            path: 'aggregate',
+            path: 'aggregate/:listId',
             loadChildren: () => import('../aggregate/aggregate.module').then( m => m.AggregatePageModule)
           }
         ]

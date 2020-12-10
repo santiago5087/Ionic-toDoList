@@ -12,10 +12,17 @@ export class ToDoService {
     this.chargeStorage();
   }
 
-  createList(title: string) {
+  createList(title: string): number {
     const newList = new List(title);
     this.myList.push(newList);
     this.saveStorage();
+
+    return newList.id;
+  }
+
+  getList(id: string | number): List {
+    id = Number(id);
+    return this.myList.find(listData => listData.id === id);
   }
 
   saveStorage() {

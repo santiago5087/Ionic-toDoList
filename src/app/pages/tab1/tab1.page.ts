@@ -38,7 +38,9 @@ export class Tab1Page {
         handler: (data) => {
           console.log(data);
           if (data['title'].length === 0) return
-          this.toDoService.createList(data['title']);
+          const listId = this.toDoService.createList(data['title']);
+
+          this.router.navigateByUrl(`tabs/tab1/aggregate/${listId}`);
         }
       }
     ]
