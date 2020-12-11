@@ -37,7 +37,7 @@ export class AggregatePage implements OnInit {
     this.toDoService.saveStorage();
   }
 
-  changeCheck(item: ListItem) {
+  changeCheck() {
     const pendings = this.list.items.filter(item => !item.done).length;
     if(pendings === 0) {
       this.list.doneAt = new Date();
