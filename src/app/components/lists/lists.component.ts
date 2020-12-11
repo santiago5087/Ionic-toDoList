@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController, IonList } from '@ionic/angular';
 import { List } from 'src/app/models/list.model';
 import { ToDoService } from 'src/app/services/to-do.service';
 
@@ -10,10 +11,16 @@ import { ToDoService } from 'src/app/services/to-do.service';
 })
 export class ListsComponent implements OnInit {
 
+  /* Como solo hay un ion-list, solo se recupera este. Si hubieran varios, selectedList sería
+  un arreglo de ion-list. El selector también podría ser una referencia local, ejm: #lista y
+  se ponde como selector: lista
+  */
+  @ViewChild(IonList) selectedList: IonList;
   @Input() finished = true;
 
   constructor(public toDoService: ToDoService,
-              private router: Router) { }
+              private router: Router,
+              private alertController: AlertController) { }
 
   ngOnInit() {}
 
@@ -27,7 +34,38 @@ export class ListsComponent implements OnInit {
   }
 
   async editNameList(list: List) {
-    
+    const alert = await this.alertController.create({
+      header: 'Edit list',
+      inputs: [
+        {
+          name: 'title',
+          type: 'text',
+          value: list.title,
+          placeholder: 'List name'
+        }
+      ],
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancelar');
+          this.selectedList.closeSlidingItems();
+        }
+      },
+      {
+        text: 'Update',
+        handler: (data) => {
+          console.log(data);
+          if (data['title'].length === 0) return
+          else {
+            this.toDoService.editNameList(list, data['title']);
+            this.selectedList.closeSlidingItems();
+          }
+        }
+      }
+    ]});
+
+    await alert.present();
   }
 
 }

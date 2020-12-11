@@ -38,4 +38,11 @@ export class ToDoService {
     this.saveStorage();
   }
 
+  editNameList(list: List, title: string) {
+    let index = this.myList.indexOf(list);
+    this.myList[index].title = title;
+
+    this.saveStorage();
+  }
+
 }
