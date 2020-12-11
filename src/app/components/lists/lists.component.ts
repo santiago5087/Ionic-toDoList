@@ -22,4 +22,12 @@ export class ListsComponent implements OnInit {
     else this.router.navigate(['/tabs/tab1/aggregate', list.id]);
   }
 
+  deleteList(list: List) {
+    this.toDoService.deleteList(list);
+  }
+
+  async editNameList(list: List) {
+    
+  }
+
 }

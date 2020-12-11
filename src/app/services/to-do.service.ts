@@ -33,4 +33,9 @@ export class ToDoService {
     if(localStorage.getItem('data')) this.myList = JSON.parse(localStorage.getItem('data'));
   }
 
+  deleteList(list: List) {
+    this.myList = this.myList.filter(listData => listData.id != list.id);
+    this.saveStorage();
+  }
+
 }
